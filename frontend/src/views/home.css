@@ -1,0 +1,217 @@
+.home-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.home-vcard-container {
+  flex: 0 0 auto;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 15px;
+  padding-left: 20px;
+  padding-right: 20px;
+  flex-direction: column;
+  padding-bottom: 15px;
+}
+.home-step1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  flex-direction: column;
+  padding-bottom: 10px;
+  background-color: #E8EEF2;
+}
+.home-title-bar {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  justify-content: flex-start;
+}
+.home-button {
+  color: white;
+  margin-right: 10px;
+  background-color: rgb(25, 24, 24);
+}
+.home-card-types {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  padding-bottom: 30px;
+}
+.home-card-container {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.home-image {
+  width: 200px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.home-image:hover {
+  width: 215px;
+}
+.home-radiobutton {
+  width: 17px;
+  height: 17px;
+  margin-top: 30px;
+}
+.home-card-container1 {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.home-image1 {
+  width: 200px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.home-image1:hover {
+  width: 215px;
+}
+.home-radiobutton1 {
+  width: 17px;
+  height: 17px;
+  margin-top: 30px;
+}
+.home-card-container2 {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.home-image2 {
+  width: 200px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.home-image2:hover {
+  width: 215px;
+}
+.home-radiobutton2 {
+  width: 17px;
+  height: 17px;
+  margin-top: 30px;
+}
+.home-card-container3 {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.home-image3 {
+  width: 200px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.home-image3:hover {
+  width: 215px;
+}
+.home-radiobutton3 {
+  width: 17px;
+  height: 17px;
+  margin-top: 30px;
+}
+.home-card-container4 {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.home-image4 {
+  width: 200px;
+  cursor: pointer;
+  object-fit: cover;
+  transition: 0.3s;
+}
+.home-image4:hover {
+  width: 215px;
+}
+.home-radiobutton4 {
+  width: 17px;
+  height: 17px;
+  margin-top: 30px;
+}
+.home-step2 {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  margin-top: 40px;
+  align-items: flex-start;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  flex-direction: column;
+  padding-bottom: 10px;
+  background-color: #E8EEF2;
+}
+.home-title-bar1 {
+  flex: 0 0 auto;
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  justify-content: flex-start;
+}
+.home-button1 {
+  color: white;
+  margin-right: 10px;
+  background-color: rgb(25, 24, 24);
+}
+.home-form-container {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+}
+.home-container1 {
+  flex: 0 0 auto;
+  width: calc(100% - 220px);
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+}
+.home-container2 {
+  flex: 0 0 auto;
+  width: 220px;
+  border: 2px dashed rgba(120, 120, 120, 0.4);
+  height: 100px;
+  display: flex;
+  align-items: flex-start;
+}
