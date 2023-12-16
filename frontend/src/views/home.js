@@ -149,12 +149,12 @@ const Home = (props) => {
                 <div className="home-left5">
                   <input
                     type="text"
-                    placeholder="Phone (Mobile)"
+                    placeholder="Phone (Private)"
                     className="home-textinput08 input"
                   />
                   <input
                     type="text"
-                    placeholder="Phone (Work)"
+                    placeholder="Fax"
                     className="home-textinput09 input"
                   />
                 </div>
