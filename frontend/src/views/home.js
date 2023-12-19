@@ -5,6 +5,24 @@ import { Helmet } from 'react-helmet'
 import './home.css'
 
 const Home = (props) => {
+
+  const call_api = async () => {
+    try {
+      const response = await fetch('/data');
+      
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      
+      const data = await response.json();
+      
+      console.log(data);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+
+
   return (
     <div className="home-container">
       <Helmet>
@@ -64,7 +82,7 @@ const Home = (props) => {
         </div>
         <div className="home-step2">
           <div className="home-title-bar1">
-            <button type="button" className="home-button1 button">
+            <button onClick={call_api} type="button" className="home-button1 button">
               Step 2
             </button>
             <span>Complete the vCard data entry</span>
