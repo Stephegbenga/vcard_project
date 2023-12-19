@@ -11,6 +11,12 @@ def serve():
     return render_template("index.html")
 
 
+@app.route('/data')
+def data():
+    return {"status":"success", "data":"olo"}
+
+
+
 if __name__ == '__main__':
     app.run()
 
