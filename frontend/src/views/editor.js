@@ -28,6 +28,7 @@ const Editor = (props) => {
     }
   }, [form]);
 
+
   const HandleSubmit = async () => {
     setLoading(true)
     if(!form.id){
@@ -47,6 +48,7 @@ const Editor = (props) => {
     }
   }
 
+
   const Close_Modal = () => {
     setShow_qr(false)
   }
@@ -56,7 +58,6 @@ const Editor = (props) => {
       html2canvas(qrCodeRef.current).then((canvas) => {
         // Convert the canvas to a data URL
         const dataUrl = canvas.toDataURL('image/png');
-
         // Trigger the download
         saveAs(dataUrl, 'qrcode.png');
       });
@@ -70,7 +71,7 @@ const Editor = (props) => {
   return (
     <div className="editor-container">
       <Helmet>
-        <title>Brogan clothing</title>
+        <title>Vcard Editor</title>
         <meta property="og:title" content="Brogan clothing" />
       </Helmet>
       <div className="editor-vcard-container">

@@ -1,13 +1,17 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useRef} from "react";
 import {Helmet} from "react-helmet";
 import QRCode from "react-qr-code";
 import "./vcards.css";
 import {get_cards, create_card} from "../api";
 import {frontend_url} from "../constant"
+import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
+
 
 const Vcards = (props) => {
   const [cards, setCards] = useState([]);
   const [loading, setLoading] = useState(false);
+  const qrCodeRefs = useRef([]);
 
   useEffect(() => {
     const onLoad = async () => {
@@ -16,6 +20,10 @@ const Vcards = (props) => {
       if (result) {
         console.log(result)
         setCards(result.data);
+        qrCodeRefs.current = Array(result.data.length)
+        .fill(null)
+        .map((_, index) => qrCodeRefs.current[index] || React.createRef());
+
       }
       setLoading(false);
     };
@@ -23,10 +31,22 @@ const Vcards = (props) => {
   }, []);
 
 
+  const Download_Qr = (index) => {
+    if (qrCodeRefs.current[index] && qrCodeRefs.current[index].current) {
+      html2canvas(qrCodeRefs.current[index].current).then((canvas) => {
+        // Convert the canvas to a data URL
+        const dataUrl = canvas.toDataURL("image/png");
+        // Trigger the download
+        saveAs(dataUrl, `qrcode_${index}.png`);
+      });
+    }
+  };
+
+
   return (
     <div className="vcards-container">
       <Helmet>
-        <title>vcards - Brogan clothing</title>
+        <title>vcards </title>
         <meta property="og:title" content="vcards - Brogan clothing" />
       </Helmet>
       <div className="vcards-title-bar">
@@ -35,9 +55,9 @@ const Vcards = (props) => {
       </div>
 
 
-      {cards.map((card) => (
+      {cards.map((card, index) => (
         <div key={card.id} className="vcards-vcard">
-          <div className="vcards-qrcode-container">
+          <div className="vcards-qrcode-container" ref={qrCodeRefs.current[index]}>
             {/* <img alt="image" src="/4cl4-200h.png" className="vcards-image" /> */}
             <QRCode size={256} style={{height: "auto", maxWidth: "100%", width: "100%"}} value={`${frontend_url}/${card.short_id}`} viewBox={`0 0 256 256`} />
           </div>
@@ -74,7 +94,7 @@ const Vcards = (props) => {
               <span className="vcards-text4">{card.created_at}</span>
             </div>
             <div className="vcards-downloadbar">
-              <button type="button" className="vcards-button4 button">
+            <button type="button" className="vcards-button4 button"                 onClick={() => Download_Qr(index)}>
                 Download 
               </button>
             </div>
