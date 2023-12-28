@@ -1,46 +1,88 @@
-# import jwt
-#
-# def verify_shopify_session(session_token, api_secret):
-#     try:
-#         # Decode the JWT token using the Shopify API secret as the key
-#         decoded_token = jwt.decode(session_token, api_secret, algorithms=['HS256'])
-#
-#         # Verify the decoded token as needed
-#         # For example, you might check the 'iss' (issuer) and 'exp' (expiration) claims
-#
-#         # Access the decoded information
-#         shop = decoded_token.get('shop')
-#         user_id = decoded_token.get('user_id')
-#
-#         # Perform additional verification or processing as needed
-#
-#         return shop, user_id
-#
-#     except jwt.ExpiredSignatureError:
-#         # The token has expired
-#         print("Token has expired")
-#
-#     except jwt.InvalidTokenError:
-#         # The token is invalid
-#         print("Invalid token")
-#
-# # Example usage
-# session_token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczpcL1wvcXVpY2tzdGFydC00Y2I4MWM1Ny5teXNob3BpZnkuY29tXC9hZG1pbiIsImRlc3QiOiJodHRwczpcL1wvcXVpY2tzdGFydC00Y2I4MWM1Ny5teXNob3BpZnkuY29tIiwiYXVkIjoiOTg2ZTA4YzIwMGFiYTlkMmE0Mjg3MjY4ZTliYmYwNDAiLCJzdWIiOiI4Mzc3ODUzNTYwMSIsImV4cCI6MTcwMjk4MDk5MywibmJmIjoxNzAyOTgwOTMzLCJpYXQiOjE3MDI5ODA5MzMsImp0aSI6IjE1NThmOGRhLWE3NzgtNDM1ZS04Y2UyLWEwYTBjMGQ0YTkzZiIsInNpZCI6IjJmN2RiMDUzZTMwNTcwNWIzMTU1YzYzZjZlZmQ1Zjk3OTliZjAyOGI4YTQzNTEwZmU5YWM0ZDQ0Yzk0NzRkYjciLCJzaWciOiIxODRjZWRjM2NkN2VlMTA1ZjNhZjdhNzRjNTgyNzc1MjQ3ZTRhN2VlNjU0ZGNhOGZhMWRhODM3MTg2ZWRlOGZjIn0.oIoZcd1C7IN_6IF-wWkg1EkNAiRRTg4UaeWvHaCqW"
-# api_secret = "a10e851396bd283fe7b2fbb1775ab8c2"
-#
-# shop, user_id = verify_shopify_session(session_token, api_secret)
-#
-# if shop and user_id:
-#     print(f"Verified session for shop: {shop}, user ID: {user_id}")
-# else:
-#     print("Session verification failed")
-
+from flask import Flask, request, render_template, send_from_directory
+import os
+from functools import wraps
+from urllib.parse import urlparse, parse_qs
 from controllers.models import Cards
-from controllers.utils import timestamp
+from controllers.utils import get_short_id, timestamp
+from flask_cors import CORS
 
-Cards.update_many({}, {"$set": {"created_at": timestamp()}, "$unset": {"timestamp": ""}})
+app = Flask(__name__, static_folder='frontend/build')
 
-cards = Cards.find({})
-for card in cards:
-    print("\n")
-    print(card)
+
+CORS(app)
+
+
+# ========== Static routes below ====================
+# Serve React App
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
+
+# ========== Api routes below ====================
+
+def middleware(f):
+    @wraps(f)
+    def decorated_function(*args, **kwargs):
+        referer = request.headers.get('Referer')
+        if not referer:
+            return {"message": "unauthorized"}, 401
+
+        parsed_url = urlparse(referer)
+        query_parameters = parse_qs(parsed_url.query)
+
+        shop = query_parameters.get('shop', [None])[0]
+
+        if not shop:
+            shop = "test_shop"
+        #     return {"message":"authorized"}, 401
+
+        kwargs['shop'] = shop
+        return f(*args, **kwargs)
+
+    return decorated_function
+
+
+
+
+@app.get('/cards')
+@middleware
+def all_cards(shop):
+    cards = list(Cards.find({"shop": shop}, {"_id": 0}))
+    return {"status":"success", "data": cards}
+
+
+@app.get('/card/<id>')
+def get_card(id):
+    query = {"$or": [{"short_id": id}, {"id": id}]}
+    card = Cards.find_one(query, {"_id": 0})
+    if not card:
+        return {"message": "not found"}, 404
+
+    new_scans = (card.get("scans") or 0) + 1
+    Cards.update_one(query, {"$set": {"scans": new_scans}})
+    return card
+
+
+@app.post('/card')
+@middleware
+def create_card(shop):
+    req = request.json
+    card = Cards.find_one({"id": req['id']})
+    if not card:
+        short_id = get_short_id()
+        req['short_id'] = short_id
+        req['scans'] = 0
+        req['created_at'] = timestamp()
+
+    Cards.update_one({"shop": shop, "id": req['id']}, {"$set": req}, upsert=True)
+    return req
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+

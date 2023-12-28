@@ -1,33 +1,26 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, send_from_directory
+import os
 from functools import wraps
 from urllib.parse import urlparse, parse_qs
 from controllers.models import Cards
 from controllers.utils import get_short_id, timestamp
 from flask_cors import CORS
 
-app = Flask(__name__, static_url_path='',
-                  static_folder='frontend/build',
-                  template_folder='frontend/build')
+app = Flask(__name__, static_folder='frontend/build')
+
 
 CORS(app)
 
 
 # ========== Static routes below ====================
-@app.route('/<id>')
-def serve_main(id):
-    return render_template("index.html")
-
-@app.route('/editor')
-def serve_editor():
-    return render_template("index.html")
-
-
-@app.route('/vcards')
-def serve_vcards():
-    return render_template("index.html")
-
-
-
+# Serve React App
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 # ========== Api routes below ====================
 
@@ -90,6 +83,6 @@ def create_card(shop):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
 
 
