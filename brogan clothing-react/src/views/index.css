@@ -1,0 +1,188 @@
+.index-container {
+  width: 100%;
+  display: flex;
+  overflow: auto;
+  min-height: 100vh;
+  align-items: center;
+  flex-direction: column;
+}
+.index-nav-bar {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #323232;
+}
+.index-image {
+  width: 151px;
+  object-fit: cover;
+  margin-left: 54px;
+}
+.index-phone-container {
+  flex: 0 0 auto;
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.index-pasted-image {
+  width: 20.888px;
+  height: 20.888px;
+}
+.index-link {
+  color: white;
+  font-size: 20px;
+  margin-left: 4.07px;
+  margin-right: 31px;
+  text-decoration: none;
+}
+.index-body {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  background-size: cover;
+  background-image: 45e5bc5c-f2c3-4add-8667-b784a051b22e;
+}
+.index-shoe5 {
+  width: 386px;
+  height: 333px;
+  display: none;
+}
+.index-sublogo-container {
+  flex: 0 0 auto;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 89px;
+  padding-left: 100px;
+}
+.index-image1 {
+  width: 250px;
+  object-fit: cover;
+}
+.index-shoes-container {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  padding-left: 70px;
+  padding-right: 70px;
+}
+.index-shoe1 {
+  width: 182px;
+  height: 222px;
+}
+.index-shoe2 {
+  width: 188px;
+  height: 222px;
+}
+.index-shoe3 {
+  width: 163px;
+  height: 200px;
+  margin-bottom: 20px;
+}
+.index-shoe4 {
+  width: 197px;
+  height: auto;
+}
+.index-shoe51 {
+  width: 386px;
+  height: 333px;
+}
+.index-text {
+  color: #FFF;
+  width: 670px;
+  font-size: 20px;
+  font-family: "Poppins";
+  line-height: 32px;
+  margin-left: 60px;
+}
+.index-footer {
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100px;
+  display: none;
+  align-items: flex-start;
+}
+@media(max-width: 479px) {
+  .index-image {
+    width: 98px;
+    margin-left: 18px;
+  }
+  .index-pasted-image {
+    width: 9px;
+    height: 9px;
+  }
+  .index-link {
+    font-size: 9px;
+  }
+  .index-body {
+    position: relative;
+    align-items: center;
+    background-size: cover;
+    background-image: url("https://play.teleporthq.io/static/svg/placeholders/no-image.svg");
+  }
+  .index-shoe5 {
+    width: 85px;
+    height: 70px;
+    display: flex;
+    margin-top: 17px;
+  }
+  .index-sublogo-container {
+    margin-top: 16px;
+    padding-top: 0px;
+    padding-left: 0px;
+    justify-content: center;
+  }
+  .index-shoes-container {
+    padding-left: 0px;
+    padding-right: 0px;
+    justify-content: center;
+  }
+  .index-shoe1 {
+    width: 78px;
+    height: auto;
+  }
+  .index-shoe2 {
+    width: 78px;
+    height: 84px;
+  }
+  .index-shoe3 {
+    width: 78px;
+    height: auto;
+  }
+  .index-shoe4 {
+    width: 78px;
+    height: 89px;
+  }
+  .index-shoe51 {
+    width: 85px;
+    height: 70px;
+    display: none;
+    margin-top: 17px;
+  }
+  .index-text {
+    width: auto;
+    text-align: center;
+    margin-left: 0px;
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+  .index-footer {
+    left: 0px;
+    bottom: 0px;
+    display: flex;
+    position: absolute;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .index-text1 {
+    color: var(--dl-color-gray-white);
+  }
+}

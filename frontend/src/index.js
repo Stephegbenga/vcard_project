@@ -8,14 +8,20 @@ import {
 } from 'react-router-dom'
 
 import './style.css'
-import Home from './views/home'
+import Editor from './views/editor'
+import Vcards from './views/vcards'
 import NotFound from './views/not-found'
+import Profile from './views/profile'
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route component={Home} exact path="/" />
+        <Route component={Editor} exact path="/editor" />
+        <Route component={Vcards} exact path="/vcards" />
+        <Route component={Profile} exact path="/:short_id" />
+
+
         <Route component={NotFound} path="**" />
         <Redirect to="**" />
       </Switch>
