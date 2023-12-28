@@ -8,8 +8,8 @@ const Template1 = ({card}) => {
   return (
     <div className="template2-container">
       <Helmet>
-        <title>template2 - Brogan clothing</title>
-        <meta property="og:title" content="template2 - Brogan clothing" />
+        <title>template2</title>
+        <meta property="og:title" content="template2" />
       </Helmet>
       <div className="template2-card">
         <div className="template2-head">

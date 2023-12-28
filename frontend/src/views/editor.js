@@ -72,7 +72,7 @@ const Editor = (props) => {
     <div className="editor-container">
       <Helmet>
         <title>Vcard Editor</title>
-        <meta property="og:title" content="Brogan clothing" />
+        <meta property="og:title" content="" />
       </Helmet>
       <div className="editor-vcard-container">
         <div className="editor-step1">

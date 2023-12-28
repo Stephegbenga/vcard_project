@@ -47,7 +47,7 @@ const Vcards = (props) => {
     <div className="vcards-container">
       <Helmet>
         <title>vcards </title>
-        <meta property="og:title" content="vcards - Brogan clothing" />
+        <meta property="og:title" content="vcards" />
       </Helmet>
       <div className="vcards-title-bar">
         <h3 className="vcards-text">vCard</h3>
