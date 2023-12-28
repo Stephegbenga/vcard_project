@@ -62,7 +62,7 @@ const Vcards = (props) => {
             <QRCode size={256} style={{height: "auto", maxWidth: "100%", width: "100%"}} value={`${frontend_url}/${card.short_id}`} viewBox={`0 0 256 256`} />
           </div>
           <div className="vcards-vcard-detail">
-            <span className="vcards-title">Campaign XUUX</span>
+            <span className="vcards-title">Campaign {card.short_id}</span>
             <div className="vcards-btn-groups">
               <button type="button" className="vcards-button button">
                 Rename
@@ -91,7 +91,7 @@ const Vcards = (props) => {
             </div>
             <div className="vcards-created">
               <span className="vcards-text3">Created:</span>
-              <span className="vcards-text4">{card.created_at}</span>
+              <span className="vcards-text4">{card.created_at.split("T")[0]}</span>
             </div>
             <div className="vcards-downloadbar">
             <button type="button" className="vcards-button4 button"                 onClick={() => Download_Qr(index)}>
