@@ -102,7 +102,7 @@ const Template1 = ({card}) => {
                 </svg>
                 <div className="template2-container08">
                   <span className="template2-text12">
-                    <span>{card.email}</span>
+                    <span>Email</span>
                     <br></br>
                   </span>
                   <span className="template2-text15">{card.email}</span>
