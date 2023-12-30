@@ -30,7 +30,7 @@ const Vcards = (props) => {
     onLoad();
   }, []);
 
-
+  
   const Download_Qr = (index) => {
     if (qrCodeRefs.current[index] && qrCodeRefs.current[index].current) {
       html2canvas(qrCodeRefs.current[index].current).then((canvas) => {
@@ -94,7 +94,7 @@ const Vcards = (props) => {
               <span className="vcards-text4">{card.created_at.split("T")[0]}</span>
             </div>
             <div className="vcards-downloadbar">
-            <button type="button" className="vcards-button4 button"                 onClick={() => Download_Qr(index)}>
+            <button type="button" className="vcards-button4 button" onClick={() => Download_Qr(index)}>
                 Download 
               </button>
             </div>

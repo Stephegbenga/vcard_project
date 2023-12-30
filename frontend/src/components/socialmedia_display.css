@@ -1,0 +1,12 @@
+.atag_socialmedia-link {
+    display: contents;
+}
+
+
+.atag_socialmedia-icon{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: var(--dl-radius-radius-round);
+    text-decoration: none;
+}

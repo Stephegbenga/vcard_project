@@ -1,10 +1,11 @@
 import React from 'react'
-
+import Socialmedia_display from "./socialmedia_display"
 import { Helmet } from 'react-helmet'
 
 import './template1.css'
 
 const Template1 = ({card}) => {
+
   return (
     <div className="template2-container">
       <Helmet>
@@ -163,156 +164,8 @@ const Template1 = ({card}) => {
               </div>
             </div>
           </div>
-          {/* <div className="template2-socialmedia">
-            <div className="template2-container15">
-              <div className="template2-container16">
-                <span className="template2-text30">
-                  <span>Social Media</span>
-                  <br></br>
-                </span>
-                <div className="template2-links">
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link">
-                    <img alt="image" src="/icons8-facebook-48-200h.png" className="template2-facebook" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link01">
-                    <img alt="image" src="/icons8-twitterx-50-200h.png" className="template2-twitter" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link02">
-                    <img alt="image" src="/icons8-ig-48-200h.png" className="template2-instagram" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link03">
-                    <img alt="image" src="/icons8-linkedin-48-200h.png" className="template2-linkedin" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link04">
-                    <img alt="image" src="/icons8-youtube-96-200h.png" className="template2-youtube" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link05">
-                    <img alt="image" src="/icons8-whatsapp-48-200h.png" className="template2-whatsapp" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link06">
-                    <img alt="image" src="/icons8-snapchat-48-200h.png" className="template2-snapchat" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link07">
-                    <img alt="image" src="/icons8-tiktok-48-200h.png" className="template2-tiktok" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link08">
-                    <img alt="image" src="/icons8-skype-48-200h.png" className="template2-skype" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link09">
-                    <img alt="image" src="/icons8-pinterest-48-200h.png" className="template2-pinterest" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link10">
-                    <img alt="image" src="/wechat-200h.png" className="template2-wechat" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link11">
-                    <img alt="image" src="/viber-200h.png" className="template2-facebook01" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link12">
-                    <img alt="image" src="/icons8-telegram-96-200h.png" className="template2-telegram" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link13">
-                    <img alt="image" src="/icons8-twitch-96-200h.png" className="template2-twitch" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link14">
-                    <img alt="image" src="/reddit-200h.png" className="template2-reddit" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link15">
-                    <img alt="image" src="/icons8-amazon-64-200h.png" className="template2-amazon" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link16">
-                    <img alt="image" src="/icons8-line-96-200h.png" className="template2-line" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link17">
-                    <img alt="image" src="/icons8-shopify-96-200h.png" className="template2-shopify" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link18">
-                    <img alt="image" src="/icons8-apple-music-96-200h.png" className="template2-applemusic" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link19">
-                    <img alt="image" src="/icons8-deliveroo-a-british-online-food-delivery-company-96-200h.png" className="template2-deliveroo" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link20">
-                    <img alt="image" src="/icons8-doordash-96-200h.png" className="template2-facebook02" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link21">
-                    <img alt="image" src="/icons8-ebay-96-200h.png" className="template2-ebay" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link22">
-                    <img alt="image" src="/icons8-etsy-96-200h.png" className="template2-facebook03" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link23">
-                    <img alt="image" src="/icons8-foodpanda-64-200h.png" className="template2-facebook04" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link24">
-                    <img alt="image" src="/glovo-200h.png" className="template2-facebook05" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link25">
-                    <img alt="image" src="/grubhub-200w.jpeg" className="template2-facebook06" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link26">
-                    <img alt="image" src="/icons8-kakaotalk-96-200h.png" className="template2-talk" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link27">
-                    <img alt="image" src="/icons8-medium-96-200h.png" className="template2-facebook07" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link28">
-                    <img alt="image" src="/icons8-meetup-app-for-hosting-in-person-events-with-similar-interests-96-200h.png" className="template2-facebook08" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link29">
-                    <img alt="image" src="/menulog-200w.png" className="template2-facebook09" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link30">
-                    <img alt="image" src="/icons8-patreon-is-a-crowdfunding-membership-platform-that-provides-business-tools-64-200h.png" className="template2-facebook10" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link31">
-                    <img alt="image" src="/icons8-podcast-641-200h.png" className="template2-facebook11" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link32">
-                    <img alt="image" src="/icons8-postmates-100-200h.png" className="template2-facebook12" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link33">
-                    <img alt="image" src="/tencent-200h.png" className="template2-facebook13" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link34">
-                    <img alt="image" src="/quora-200h.png" className="template2-quora" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link35">
-                    <img alt="image" src="/icons8-rakuten-50-200h.png" className="template2-facebook14" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link36">
-                    <img alt="image" src="/icons8-soundcloud-48-200h.png" className="template2-facebook15" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link37">
-                    <img alt="image" src="/icons8-grubhub-96-200h.png" className="template2-facebook16" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link38">
-                    <img alt="image" src="/icons8-streamlabs-obs-96-200h.png" className="template2-facebook17" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link39">
-                    <img alt="image" src="/icons8-swiggy-96-200h.png" className="template2-facebook18" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link40">
-                    <img alt="image" src="/icons8-tumblr-96-200h.png" className="template2-facebook19" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link41">
-                    <img alt="image" src="/icons8-uber-eats-96-200h.png" className="template2-facebook20" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link42">
-                    <img alt="image" src="/yelplink-200h.png" className="template2-facebook21" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link43">
-                    <img alt="image" src="/zomato-200h.png" className="template2-facebook22" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link44">
-                    <img alt="image" src="/yogiyo-200h.png" className="template2-facebook23" />
-                  </a>
-                  <a href="https://sjksjhksjksj" target="_blank" rel="noreferrer noopener" className="template2-link45">
-                    <img alt="image" src="/signal-200h.png" className="template2-facebook24" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div> */}
+
+          <Socialmedia_display socialmedias={card.social_medias} />
         </div>
       </div>
       <div className="template2-footer">

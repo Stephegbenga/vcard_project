@@ -4,6 +4,7 @@ import { Helmet } from 'react-helmet'
 import uuid from 'react-uuid';
 import {create_card} from "../api"
 import QRCode from "react-qr-code";
+import Socialmedia_selection from "../components/socialmedia_selection"
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 import {frontend_url} from "../constant"
@@ -16,6 +17,9 @@ const Editor = (props) => {
   const [disabled, setDisabled] = useState(true)
   const [qr_data, setQr_data] = useState("")
   const [show_qr, setShow_qr] = useState(false)
+  const [social_medias, setSocial_medias] = useState([])
+
+
 
   const qrCodeRef = useRef(null);
 
@@ -31,6 +35,7 @@ const Editor = (props) => {
 
   const HandleSubmit = async () => {
     setLoading(true)
+    form.social_medias = social_medias
     if(!form.id){
       let unique_id = uuid()
       form.id = unique_id
@@ -64,7 +69,12 @@ const Editor = (props) => {
     }
   };
 
-
+  const Handle_Socialmedia_change = (values) => {
+    const nonEmptyValues = values.filter((media) => media.value && media.value.trim() !== "");
+    if (nonEmptyValues.length != 0) {
+      setSocial_medias(nonEmptyValues)
+    }
+  };
 
 
 
@@ -330,6 +340,8 @@ const Editor = (props) => {
                   </div>
                 </div>
               </div>
+
+              <Socialmedia_selection onChange={Handle_Socialmedia_change} />
 
               <div style={{marginTop: 25}}>
                 <Button loading={loading} onClick={HandleSubmit} disabled={disabled} type="primary">Generate QR code</Button>

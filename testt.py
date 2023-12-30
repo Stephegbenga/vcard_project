@@ -1,6 +1,8 @@
 from controllers.models import Cards
 
+cards = Cards.find({})
 
-
-data = {"state": "Alabama", "country":"usa", "phone_mobile":"1928928902829", "phone_private":"827827822", "phone_work":"134333", "street" :"washington dc", "city":"san francisco"}
-Cards.update_many({}, {"$set": data})
+for card in cards:
+    print("\n")
+    print(card)
+    print("\n")

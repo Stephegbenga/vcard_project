@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^5.2.6",
     "@craco/craco": "^7.0.0-alpha.0",
     "antd": "^5.12.5",
     "file-saver": "^2.0.5",
