@@ -121,6 +121,16 @@ def create_card(shop):
     return req
 
 
+@app.post('/customer/data/request')
+def customer_data_request():
+    return "received"
+
+
+@app.post('/customer/data/delete')
+def customer_data_delete():
+    return "received"
+
+
 if __name__ == '__main__':
     app.run()
 
