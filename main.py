@@ -3,7 +3,7 @@ import os, requests, json
 from functools import wraps
 from urllib.parse import urlparse, parse_qs
 from controllers.models import Cards
-from controllers.utils import get_short_id, timestamp
+from controllers.utils import get_short_id, timestamp, middleware, verify_shopify_request_path, verify_shopify_request_header
 from flask_cors import CORS
 from config import SHOPIFY_CONFIG
 
@@ -17,32 +17,14 @@ CORS(app)
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
+    if path in ["vcards", "editor"]:
+        if not verify_shopify_request_path(request):
+            return {"status":"error", "message":"unauthorized"}, 401
+
     if path != "" and os.path.exists(app.static_folder + '/' + path):
         return send_from_directory(app.static_folder, path)
     else:
         return send_from_directory(app.static_folder, 'index.html')
-
-
-def middleware(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        referer = request.headers.get('Referer')
-        if not referer:
-            return {"message": "unauthorized"}, 401
-
-        parsed_url = urlparse(referer)
-        query_parameters = parse_qs(parsed_url.query)
-
-        shop = query_parameters.get('shop', [None])[0]
-
-        if not shop:
-            shop = "test_shop"
-        #     return {"message":"authorized"}, 401
-
-        kwargs['shop'] = shop
-        return f(*args, **kwargs)
-
-    return decorated_function
 
 
 # ====================== Installation routes below ================================
@@ -62,27 +44,34 @@ def install():
 @app.route('/callback', methods=['GET'])
 def callback():
     if request.args.get("shop"):
-        params = {"client_id": SHOPIFY_CONFIG["API_KEY"], "client_secret": SHOPIFY_CONFIG["API_SECRET"], "code": request.args.get("code")}
-        resp = requests.post("https://{0}/admin/oauth/access_token".format(request.args.get("shop")), data=params)
-
-        if 200 == resp.status_code:
-            resp_json = json.loads(resp.text)
-
-            endpoint = "/admin/products.json"
-
-            headers = {"X-Shopify-Access-Token": resp_json.get("access_token"), "Content-Type": "application/json"}
-            response = requests.get("https://{0}{1}".format(request.args.get("shop"), endpoint), headers=headers)
-
-            access_token = resp_json.get("access_token")
-            shop = request.args.get("shop")
-
-            payload = {"shop": shop, "access_token": access_token}
-            return "<h2>Hello World</h2>"
-        else:
-            return "<h2>Hello World</h2>"
+        shop = request.args.get('shop').split('.myshopify.com')[0]
+        new_url = f"https://admin.shopify.com/store/{shop}/apps/vcard-timi/editor"
+        return redirect(new_url)
+    else:
+        return {"status":"error", "message":"unauthorized"}, 401
 
 
-# ========== Api routes below ====================
+    # if request.args.get("shop"):
+        # params = {"client_id": SHOPIFY_CONFIG["API_KEY"], "client_secret": SHOPIFY_CONFIG["API_SECRET"], "code": request.args.get("code")}
+        # resp = requests.post("https://{0}/admin/oauth/access_token".format(request.args.get("shop")), data=params)
+        #
+        # if 200 == resp.status_code:
+        #     resp_json = json.loads(resp.text)
+        #
+        #     endpoint = "/admin/products.json"
+        #
+        #     headers = {"X-Shopify-Access-Token": resp_json.get("access_token"), "Content-Type": "application/json"}
+        #     response = requests.get("https://{0}{1}".format(request.args.get("shop"), endpoint), headers=headers)
+        #
+        #     access_token = resp_json.get("access_token")
+        #     shop = request.args.get("shop")
+        #
+        #     payload = {"shop": shop, "access_token": access_token}
+        #     return "<h2>Hello World</h2>"
+        # else:
+        #     return "<h2>Hello World</h2>"
+
+
 
 @app.get('/cards')
 @middleware
@@ -121,14 +110,26 @@ def create_card(shop):
     return req
 
 
-@app.post('/customer/data/request')
+@app.post('/customers/data_request')
 def customer_data_request():
+    if not verify_shopify_request_header(request):
+        return {"status": "error", "message": "unauthorized"}, 401
+
     return "received"
 
 
-@app.post('/customer/data/delete')
+@app.post('/customers/redact')
 def customer_data_delete():
+    if not verify_shopify_request_header(request):
+        return {"status": "error", "message": "unauthorized"}, 401
     return "received"
+
+@app.post('/shop/redact')
+def delete_shop_data():
+    if not verify_shopify_request_header(request):
+        return {"status": "error", "message": "unauthorized"}, 401
+
+    return "deleted"
 
 
 if __name__ == '__main__':
